@@ -22,4 +22,4 @@ jobs:
               --name StorageAccountDeployment \
               --resource-group rg-azure \
               --template-file ARMTemplates/storageaccount.json\
-              --parameters storageAccountType=Standard_GRS
+              --parameters storageAccountName=myuniquestorage123 storageAccountType=Standard_GRS
