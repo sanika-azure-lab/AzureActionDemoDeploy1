@@ -21,21 +21,6 @@ jobs:
           inlineScript: |
             az provider register --namespace Microsoft.Storage
 
-      - name: Wait for provider registration
-        uses: azure/CLI@v1
-        with:
-          inlineScript: |
-            echo "Waiting for Microsoft.Storage provider registration..."
-            while true; do
-              state=$(az provider show --namespace Microsoft.Storage --query "registrationState" -o tsv)
-              echo "Current registration state: $state"
-              if [ "$state" == "Registered" ]; then
-                break
-              fi
-              echo "Still registering... waiting 10 seconds"
-              sleep 10
-            done
-
       - name: Deploy ARM Template
         uses: azure/CLI@v1
         with:
