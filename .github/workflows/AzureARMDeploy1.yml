@@ -5,14 +5,21 @@ on: [push]
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+
       - name: Login to Azure
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Checkout source code
-        uses: actions/checkout@v2
+      - name: Register Microsoft.Storage provider
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az provider register --namespace Microsoft.Storage
 
       - name: Deploy ARM Template
         uses: azure/CLI@v1
@@ -21,5 +28,5 @@ jobs:
             az deployment group create \
               --name StorageAccountDeployment \
               --resource-group rg-azure \
-              --template-file ARMTemplates/storageaccount.json\
+              --template-file ARMTemplates/storageaccount.json \
               --parameters storageAccountName=myuniquestorage123 storageAccountType=Standard_GRS
