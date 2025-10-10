@@ -21,5 +21,5 @@ jobs:
             az deployment group create \
               --name StorageAccountDeployment \
               --resource-group rg-azure \
-              --template-file armtemplates/storageaccount.json \
+              --template-file ARMTemplates/storageaccount.json\
               --parameters storageAccountType=Standard_GRS
