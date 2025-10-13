@@ -15,16 +15,17 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-     
       - name: Register Microsoft.Storage provider
         uses: azure/CLI@v1
         with:
+          azcliversion: 2.72.0
           inlineScript: |
             az provider register --namespace Microsoft.Storage
 
       - name: Deploy ARM Template
         uses: azure/CLI@v1
         with:
+          azcliversion: 2.72.0
           inlineScript: |
             az deployment group create \
               --name StorageAccountDeployment \
@@ -33,4 +34,5 @@ jobs:
               --parameters storageAccountName=myuniquestorage123 \
                            storageAccountType=Standard_GRS \
                            location="East US" \
+              --debug
              
