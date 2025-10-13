@@ -15,12 +15,7 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Create Resource Group
-        uses: azure/CLI@v1
-        with:
-          inlineScript: |
-            az group create --name rg-azure1 --location "East US"
-
+     
       - name: Register Microsoft.Storage provider
         uses: azure/CLI@v1
         with:
@@ -38,4 +33,4 @@ jobs:
               --parameters storageAccountName=myuniquestorage123 \
                            storageAccountType=Standard_GRS \
                            location="East US" \
-              --debug
+             
