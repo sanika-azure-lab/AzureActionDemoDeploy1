@@ -31,7 +31,7 @@ jobs:
               --name StorageAccountDeployment \
               --resource-group rg-azure1 \
               --template-file ARMTemplates/storageaccount.json \
-              --parameters storageAccountName=myuniquestorage123 \
+              --parameters storageAccountName=myuniquestorage12345 \
                            storageAccountType=Standard_GRS \
                            location="East US" \
               --debug
