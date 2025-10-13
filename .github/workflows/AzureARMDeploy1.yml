@@ -18,21 +18,16 @@ jobs:
       - name: Register Microsoft.Storage provider
         uses: azure/CLI@v1
         with:
-          azcliversion: 2.72.0
-          inlineScript: |
+          inlineScript: 
             az provider register --namespace Microsoft.Storage
 
       - name: Deploy ARM Template
         uses: azure/CLI@v1
         with:
-          azcliversion: 2.72.0
           inlineScript: |
             az deployment group create \
               --name StorageAccountDeployment \
-              --resource-group rg-azure1 \
+              --resource-group rg-azure \
               --template-file ARMTemplates/storageaccount.json \
-              --parameters storageAccountName=myuniquestorage12345 \
-                           storageAccountType=Standard_GRS \
-                           location="East US" \
-              --debug
+              --parameters storageAccountName=myuniquestorage12345 storageAccountType=Standard_GRS
              
