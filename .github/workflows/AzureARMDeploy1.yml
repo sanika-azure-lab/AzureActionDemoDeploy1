@@ -18,7 +18,7 @@ jobs:
       - name: Register Microsoft.Storage provider
         uses: azure/CLI@v1
         with:
-          inlineScript: |
+          inlineScript: 
             az provider register --namespace Microsoft.Storage
 
       - name: Deploy ARM Template
