@@ -26,7 +26,7 @@
     {
       "type": "Microsoft.Storage/storageAccounts",
       "apiVersion": "2022-09-01",
-      "name": "[parameters('storageAccountName')]",
+      "name": "storagedevpune",
       "location": "[parameters('location')]",
       "sku": {
         "name": "[parameters('storageAccountType')]"
