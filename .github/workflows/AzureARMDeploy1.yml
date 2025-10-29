@@ -1,33 +1,41 @@
-name: Deploy ARM Template 
- 
+name: Deploy ARM Template
+
 on:
   push:
     branches:
       - main
-      - feature-deploy-update 1  
- 
+      - feature-deploy-update
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
- 
+
+    env:
+      ACTIONS_STEP_DEBUG: true 
+
     steps:
-     
       - name: Checkout source code
         uses: actions/checkout@v3
- 
+
       - name: Azure Login
         uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
- 
+
       - name: Deploy ARM Template
-        uses: azure/arm-deploy@v2
+        uses: azure/arm-deploy@v3
         with:
           subscriptionId: 870dd7f7-c668-401f-8d00-0ed203e30b26
           resourceGroupName: rg-azure31
-          template: ARMTemplates/storageaccount.json
-          parameters: |
-            storageAccountName=sanikastorageacct1234
-            storageAccountType=Standard_GRS
+          template: ./ARMTemplates/storageaccount.json
+          parameters: >
+            {
+              "storageAccountName": {
+                "value": "sanikastorageacct1234"
+              },
+              "storageAccountType": {
+                "value": "Standard_GRS"
+              }
+            }
           failOnStdErr: false
           
