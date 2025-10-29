@@ -5,7 +5,11 @@
     "storageAccountName": {
       "type": "string",
       "minLength": 3,
-      "maxLength": 24
+      "maxLength": 24,
+      "pattern": "^[a-z0-9]{3,24}$",
+      "metadata": {
+        "description": "Storage account name: lowercase letters and numbers only, 3-24 characters."
+      }
     },
     "storageAccountType": {
       "type": "string",
@@ -15,11 +19,17 @@
         "Standard_GRS",
         "Standard_ZRS",
         "Premium_LRS"
-      ]
+      ],
+      "metadata": {
+        "description": "Storage account SKU"
+      }
     },
     "location": {
       "type": "string",
-      "defaultValue": "[resourceGroup().location]"
+      "defaultValue": "",
+      "metadata": {
+        "description": "Location. Leave empty to use the resource group's location."
+      }
     }
   },
   "resources": [
@@ -27,7 +37,7 @@
       "type": "Microsoft.Storage/storageAccounts",
       "apiVersion": "2022-09-01",
       "name": "[parameters('storageAccountName')]",
-      "location": "[parameters('location')]",
+      "location": "[if(equals(parameters('location'), ''), resourceGroup().location, parameters('location'))]",
       "sku": {
         "name": "[parameters('storageAccountType')]"
       },
