@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      ACTIONS_STEP_DEBUG: true 
+      ACTIONS_STEP_DEBUG: true
 
     steps:
       - name: Checkout source code
@@ -23,7 +23,7 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Deploy ARM Template
-        uses: azure/arm-deploy@v3
+        uses: azure/arm-deploy@v2
         with:
           subscriptionId: 870dd7f7-c668-401f-8d00-0ed203e30b26
           resourceGroupName: rg-azure31
