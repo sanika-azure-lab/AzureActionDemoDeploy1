@@ -1,10 +1,10 @@
-name: Deploy ARM Template using ARM Deploy Action
+name: Deploy ARM Template 
  
 on:
   push:
     branches:
       - main
-      - feature-deploy-update   
+      - feature-deploy-update 1  
  
 jobs:
   deploy:
@@ -23,10 +23,11 @@ jobs:
       - name: Deploy ARM Template
         uses: azure/arm-deploy@v2
         with:
+          subscriptionId: 870dd7f7-c668-401f-8d00-0ed203e30b26
           resourceGroupName: rg-azure31
           template: ARMTemplates/storageaccount.json
           parameters: |
-            storageAccountName=sanikastorageacct123
+            storageAccountName=sanikastorageacct1234
             storageAccountType=Standard_GRS
           failOnStdErr: false
           
