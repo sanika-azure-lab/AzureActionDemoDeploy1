@@ -44,5 +44,9 @@ jobs:
           subscriptionId: "870dd7f7-c668-401f-8d00-0ed203e30b26"
           resourceGroupName: rg-azure111
           template: ARMTemplates/storageaccount.json
+          parameters: |
+           storageAccountName=sanikastorageacc0123 
+           storageAccountType=Standard_GRS
+          failOnStdErr: false
          
           
